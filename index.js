@@ -23,7 +23,7 @@ io.on('connection', (socket) => {
     
     // If a message is received from the client, display the message in the console
     socket.on('clientToServer', (content) => {
-        console.log ('Message from client : ',content);
+        console.log ('Message from client:',content);
     });
 
     // Every second, send a message with the date
