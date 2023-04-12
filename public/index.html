@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="/socket.io/socket.io.js"></script>
+    </head>
+    <body>
+        <h1>Web Sockets</h1>
+
+
+        <pre id="received"></pre>
+
+        <script>
+
+            var socket = io();
+            socket.emit('message', 'coucou 2');
+
+            socket.on('label', (content) => {
+                console.log (content);
+                //document.getElementById('received').textContent += timestamp+'\n';
+            })
+          </script>
+
+    </body>
+
+</html>
