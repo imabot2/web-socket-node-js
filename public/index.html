@@ -1,24 +1,30 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <!-- Load the Web Socket library -->
         <script src="/js/socket.io.min.js"></script>
     </head>
     <body>
-        <h1>Web Sockets</h1>
-
-
-        <pre id="received"></pre>
+        <h1>Web Sockets Simple Demo</h1>        
+        <button id="send-button">Send</button>
+        <pre id="received" style="border: 1px solid black; min-height:50px;"></pre>
 
         <script>
 
+            // Create an object socket
             var socket = io();
-            socket.emit('message', 'coucou 2');
 
-            socket.on('label', (content) => {
-                console.log (content);
-                //document.getElementById('received').textContent += timestamp+'\n';
-            })
-          </script>
+            // When the button send is clicked, send { 'clientToServer': 'Hello' } to the server
+            document.getElementById('send-button').addEventListener('click',() => {
+                socket.emit('clientToServer', 'Hello World');
+            });
+            
+            // When a message is received from the server, display the message in the DOM
+            socket.on('serverToClient', (content) => {                
+                document.getElementById('received').textContent += content+'\n';
+            });
+
+        </script>
 
     </body>
 
